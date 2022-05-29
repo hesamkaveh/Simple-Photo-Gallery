@@ -32,9 +32,9 @@ export const styles = createUseStyles({
     },
     innerModalWrapper: {
         position: 'relative',
-        boxShadow: '0px 0px 24px 12px #11111187',
-        borderRadius: '4px',
-        overflow: 'hidden'
+        // boxShadow: '0px 0px 24px 12px #11111187',
+        // borderRadius: '4px',
+        // overflow: 'hidden'
     }
 
 })
