@@ -1,10 +1,10 @@
-import {styles} from "./_404_notFound.style";
+import {styles} from "./NotFoundPage.style";
 
-const _404_notFound = () => {
+const NotFoundPage = () => {
     const classes = styles()
 
     return (
         <div className={classes.wrapper}>404 - not found</div>
     )
 }
-export default _404_notFound
+export default NotFoundPage

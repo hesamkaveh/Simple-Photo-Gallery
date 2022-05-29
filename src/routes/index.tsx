@@ -8,8 +8,8 @@ import DefaultLayout from "../layouts/DefaultLayout";
 import translate from "../utils/lang";
 import LoadingSpinner from "../components/LoadingSpinner";
 import {Suspense, lazy} from "react";
-import _404_notFound from "../pages/_404_notFound";
 
+const NotFoundPage = lazy(() => import("../pages/NotFoundPage"));
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 const GalleryPage = lazy(() => import("../pages/GalleryPage/GalleryPage"));
 
@@ -33,7 +33,7 @@ const RouteList = () => {
                         fallback={<LoadingSpinner/>}><Outlet/></Suspense></DefaultLayout>}>
                     <Route path={routeObject.home.path} element={<HomePage/>}/>
                     <Route path={routeObject.gallery.path} element={<GalleryPage/>}/>
-                    <Route path="*" element={<_404_notFound/>}>
+                    <Route path="*" element={<NotFoundPage/>}>
                     </Route>
                 </Route>
             </Routes>
