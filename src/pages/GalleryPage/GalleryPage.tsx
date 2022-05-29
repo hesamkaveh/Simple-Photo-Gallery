@@ -41,7 +41,8 @@ const GalleryPage = () => {
         (photoList?.length || 0) < 1 && fetchCategories().then(() => {
             fetchPhotos({})
         })
-    }, [fetchCategories, fetchPhotos, photoList])
+        // eslint-disable-next-line
+    }, [fetchCategories, fetchPhotos])
 
     const handleLoadMore = () => {
         fetchPhotos({})

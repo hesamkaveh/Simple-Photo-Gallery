@@ -5,7 +5,6 @@ const axiosInstance = axios.create({
     baseURL: API_GATEWAY,
     timeout: REQUEST_TIMEOUT,
     validateStatus: function (status) {
-        console.log("network error!!!")
         return status >= 200 && status < 300; // default
     }
 })
