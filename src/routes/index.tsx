@@ -6,7 +6,6 @@ import {
 } from "react-router-dom";
 import DefaultLayout from "../layouts/DefaultLayout";
 import translate from "../utils/lang";
-import LoadingSpinner from "../components/LoadingSpinner";
 import {Suspense, lazy} from "react";
 
 const NotFoundPage = lazy(() => import("../pages/NotFoundPage"));
