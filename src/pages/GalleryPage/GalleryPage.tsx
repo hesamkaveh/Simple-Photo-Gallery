@@ -7,7 +7,7 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import {useSelector} from 'react-redux'
 import useRematchDispatch from "../../hooks/useRematchDispatch";
 
-const GallerySection = lazy(() => import("./components/GallerySection/GallerySection"));
+const PhotosSection = lazy(() => import("./components/PhotosSection/PhotosSection"));
 const SidebarSection = lazy(() => import( "./components/SidebarSection/SidebarSection"));
 
 const GalleryPage = () => {
@@ -63,7 +63,7 @@ const GalleryPage = () => {
 
                 <Suspense
                     fallback={<div className={classes.photosLoadingWrapper}><LoadingSpinner/></div>}>
-                    {photoList.length > 0 && <GallerySection className={classes.gallery}
+                    {photoList.length > 0 && <PhotosSection className={classes.gallery}
                                                              photosList={photoList}
                                                              fetchNextPage={() => {
                                                                  handleLoadMore()

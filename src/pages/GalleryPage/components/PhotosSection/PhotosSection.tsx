@@ -1,10 +1,10 @@
-import {styles} from "./GallerySection.style";
+import {styles} from "./PhotosSection.style";
 import Button from "../../../../components/Button";
 import translate from "../../../../utils/lang";
 import Photo from "../../../../components/Photo";
 import {PhotoType} from "../../../../models/types/gallery.type";
 
-const GallerySection = ({photosList, fetchNextPage, loadingNewPhotos, ...props}: any) => {
+const PhotosSection = ({photosList, fetchNextPage, loadingNewPhotos, ...props}: any) => {
     const classes = styles()
 
     return (
@@ -22,4 +22,4 @@ const GallerySection = ({photosList, fetchNextPage, loadingNewPhotos, ...props}:
         </div>
     )
 }
-export default GallerySection
+export default PhotosSection
