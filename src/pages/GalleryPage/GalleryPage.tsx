@@ -16,11 +16,13 @@ const GalleryPage = () => {
     const {
         categories,
         currentCategoryId,
-        loadingNewPhotos
+        loadingNewPhotos,
+        photoList
     } = useSelector((state: RootState) => ({
         categories: state.gallery.categories,
         currentCategoryId: state.gallery.currentCategoryId,
-        loadingNewPhotos: state.loading?.models.gallery
+        loadingNewPhotos: state.loading?.models.gallery,
+        photoList:state.gallery.photoList
     }))
 
     const {
@@ -35,11 +37,8 @@ const GalleryPage = () => {
         changeCategory: dispatch.gallery.changeCategory,
     }))
 
-    const photosList = useSelector((state: RootState) => state.gallery.photoList)
-
-
     useEffect(() => {
-        fetchCategories().then(() => {
+        photoList.length < 1 && fetchCategories().then(() => {
             fetchPhotos({})
         })
     }, [fetchCategories, fetchPhotos])
@@ -63,14 +62,14 @@ const GalleryPage = () => {
 
                 <Suspense
                     fallback={<div className={classes.photosLoadingWrapper}><LoadingSpinner/></div>}>
-                    {photosList.length > 0 && <GallerySection className={classes.gallery}
-                                                              photosList={photosList}
+                    {photoList.length > 0 && <GallerySection className={classes.gallery}
+                                                              photosList={photoList}
                                                               fetchNextPage={() => {
                                                                   handleLoadMore()
                                                               }}
                                                               loadingNewPhotos={loadingNewPhotos}/>}
                 </Suspense>
-                {photosList.length < 1 && loadingNewPhotos ?
+                {photoList.length < 1 && loadingNewPhotos ?
                     <div className={classes.photosLoadingWrapper}><LoadingSpinner/></div> : null}
             </div>
         </SectionContainer>
