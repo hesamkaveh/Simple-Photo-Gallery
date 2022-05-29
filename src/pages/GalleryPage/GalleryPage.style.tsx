@@ -8,9 +8,11 @@ export const styles = createUseStyles({
     },
     sidebar: {
         width: 200,
+        '@media (max-width: 600px)': {width: '100%'}
+
     },
     gallery: {
-        width: '100%'
+        width: '100%',
     },
     '@media (min-width: 600px)': {
         container: {
