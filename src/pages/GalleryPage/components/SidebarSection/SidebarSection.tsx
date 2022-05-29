@@ -37,11 +37,8 @@ const SidebarSection = ({categories, currentCategoryId, setCurrentCategoryId, ch
                 <Button onClick={() => setOpen(true)}>
                     <h3 className={classes.mobileTitle}>{translate('selectCategory')}</h3>
                 </Button>
-                {categories.map(({name, id}: CategoryType) => {
-                    if (currentCategoryId === id) {
-                        return (<h4 className={classes.mobileCategory}>«{name}»</h4>)
-                    }
-                })}
+                {categories.map(({name, id}: CategoryType) => currentCategoryId === id ?
+                    <h4 className={classes.mobileCategory}>«{name}»</h4> : null)}
             </div>
 
             <Modal open={open} onClose={() => setOpen(false)}>
