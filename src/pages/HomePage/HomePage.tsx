@@ -12,10 +12,16 @@ function HomePage() {
                 {translate('homeContent')}
 
                 <div>
-                    Demo available is on <a className={classes.link} href="/">Netlify</a>
+                    Demo available is on <a className={classes.link}
+                                            target={'_blank'}
+                                            href="https://earnest-gaufre-52d1e6.netlify.app"
+                                            rel="noreferrer">Netlify</a>
                 </div>
                 <div>
-                    Source code is available on <a className={classes.link} href="/">Github</a>
+                    Source code is available on <a className={classes.link}
+                                                   target={'_blank'}
+                                                   href="https://github.com/hesamkaveh/Simple-Photo-Gallery"
+                                                   rel="noreferrer">Github</a>
                 </div>
                 {/*<div>{translate('homeContent')}</div>*/}
             </div>
