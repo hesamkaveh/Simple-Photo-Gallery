@@ -22,7 +22,7 @@ const GalleryPage = () => {
         categories: state.gallery.categories,
         currentCategoryId: state.gallery.currentCategoryId,
         loadingNewPhotos: state.loading?.models.gallery,
-        photoList:state.gallery.photoList
+        photoList: state.gallery.photoList
     }))
 
     const {
@@ -38,7 +38,7 @@ const GalleryPage = () => {
     }))
 
     useEffect(() => {
-        photoList.length < 1 && fetchCategories().then(() => {
+        (photoList?.length || 0) < 1 && fetchCategories().then(() => {
             fetchPhotos({})
         })
     }, [fetchCategories, fetchPhotos])
@@ -63,11 +63,11 @@ const GalleryPage = () => {
                 <Suspense
                     fallback={<div className={classes.photosLoadingWrapper}><LoadingSpinner/></div>}>
                     {photoList.length > 0 && <GallerySection className={classes.gallery}
-                                                              photosList={photoList}
-                                                              fetchNextPage={() => {
-                                                                  handleLoadMore()
-                                                              }}
-                                                              loadingNewPhotos={loadingNewPhotos}/>}
+                                                             photosList={photoList}
+                                                             fetchNextPage={() => {
+                                                                 handleLoadMore()
+                                                             }}
+                                                             loadingNewPhotos={loadingNewPhotos}/>}
                 </Suspense>
                 {photoList.length < 1 && loadingNewPhotos ?
                     <div className={classes.photosLoadingWrapper}><LoadingSpinner/></div> : null}
