@@ -29,8 +29,13 @@ const RouteList = () => {
         <BrowserRouter>
             <Routes>
                 <Route
-                    element={<DefaultLayout><Suspense
-                        fallback={<LoadingSpinner/>}><Outlet/></Suspense></DefaultLayout>}>
+                    element={
+                        <DefaultLayout>
+                            <Suspense fallback={<div></div>}>
+                                <Outlet/>
+                            </Suspense>
+                        </DefaultLayout>
+                    }>
                     <Route path={routeObject.home.path} element={<HomePage/>}/>
                     <Route path={routeObject.gallery.path} element={<GalleryPage/>}/>
                     <Route path="*" element={<NotFoundPage/>}>
