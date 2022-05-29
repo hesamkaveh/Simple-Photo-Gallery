@@ -1,18 +1,26 @@
 import {styles} from "./Photo.style";
-import React from "react";
+import React, {useState} from "react";
+import {Modal} from "../Modal";
 
-type PhotoType = {
-    url: string
-    id: number | string
-}
-const Photo = ({url, id}: PhotoType) => {
+
+const Photo = ({url, id}: any) => {
+    const [open, setOpen] = useState(false)
     const classes = styles()
     id = `${id}`
 
     return (
-        <figure className={classes.figure}>
+        <figure className={classes.figure} onClick={() => {
+            setOpen(true)
+        }}>
             <img className={classes.eachPhoto} src={url} alt={id}/>
-
+            <Modal
+                open={open}
+                onClose={(e: React.MouseEvent<HTMLHeadingElement>) => {
+                    e.stopPropagation()
+                    setOpen(false)
+                }}>
+                <img className={classes.photoInModal} src={url} alt={id}/>
+            </Modal>
         </figure>
     )
 }

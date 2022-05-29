@@ -25,6 +25,6 @@ I didn't use any pre-made UI Kit library like MUI or AntD.
 - [ ] Add important SEO tags(title, alt)
 - [ ] Complete Home page and AboutUs page
 - [ ] Add Typography component
-- [ ] Open Modal when photo is clicked
+- [x] Open Modal when photo is clicked
 - [ ] Add Persian font
 

@@ -8,8 +8,8 @@ export type PhotoType = {
     categories: CategoryType[]
     id: string
     url: string
-    width: number
-    height: number
+    width: number | string
+    height: number | string
 }
 
 export type GalleryState = {

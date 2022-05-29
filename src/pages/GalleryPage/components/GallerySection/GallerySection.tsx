@@ -2,6 +2,7 @@ import {styles} from "./GallerySection.style";
 import Button from "../../../../components/Button";
 import translate from "../../../../utils/lang";
 import Photo from "../../../../components/Photo";
+import {PhotoType} from "../../../../models/types/gallery.type";
 
 const GallerySection = ({photosList, fetchNextPage, loadingNewPhotos, ...props}: any) => {
     const classes = styles()
@@ -9,7 +10,7 @@ const GallerySection = ({photosList, fetchNextPage, loadingNewPhotos, ...props}:
     return (
         <div {...props}>
             <div className={classes.container}>
-                {photosList.map(({id, url}: any) => (
+                {photosList.map(({id, url}: PhotoType) => (
                     <Photo key={id} url={url} id={id}/>
                 ))}
             </div>
