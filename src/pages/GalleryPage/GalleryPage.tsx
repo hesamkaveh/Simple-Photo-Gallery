@@ -41,7 +41,7 @@ const GalleryPage = () => {
         (photoList?.length || 0) < 1 && fetchCategories().then(() => {
             fetchPhotos({})
         })
-    }, [fetchCategories, fetchPhotos])
+    }, [fetchCategories, fetchPhotos, photoList])
 
     const handleLoadMore = () => {
         fetchPhotos({})
