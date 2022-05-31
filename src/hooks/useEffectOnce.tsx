@@ -35,5 +35,6 @@ export const useEffectOnce = (effect: React.EffectCallback) => {
                 destroyFunc.current();
             }
         };
+        // eslint-disable-next-line
     }, []);
 };
