@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import DefaultLayout from "../layouts/DefaultLayout";
 import translate from "../utils/lang";
-import {Suspense, lazy} from "react";
+import React, {Suspense, lazy} from "react";
 
 const NotFoundPage = lazy(() => import("../pages/NotFoundPage"));
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
@@ -22,7 +22,7 @@ export const routeObject = {
         name: () => translate('pages.photosList')
     }
 }
-const RouteList = () => {
+const RouteList:React.FC = () => {
 
     return (
         <BrowserRouter>

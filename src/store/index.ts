@@ -1,8 +1,9 @@
 import {init, RematchDispatch, RematchRootState} from '@rematch/core'
-import {models, RootModel} from '../models'
+import {models} from '../models'
 import persist from '@rematch/persist'
 import storage from 'redux-persist/lib/storage'
 import loadingPlugin, {ExtraModelsFromLoading} from "@rematch/loading"
+import {RootModel} from "../models/models.types";
 
 type FullModel = ExtraModelsFromLoading<RootModel>
 

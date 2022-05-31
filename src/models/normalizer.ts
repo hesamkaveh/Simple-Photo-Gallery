@@ -1,6 +1,6 @@
-import {CategoryType, PhotoType} from "./types/gallery.type";
+import {CategoryType, PhotoType} from "./models.types";
 
-export const PhotosNormalizer = (data: PhotoType[]) => {
+export const PhotosNormalizer = (data: PhotoType[]): PhotoType[] => {
     return data.map(({categories, id, url, height, width, breeds = []}) => ({
         categories,
         id,
@@ -10,7 +10,8 @@ export const PhotosNormalizer = (data: PhotoType[]) => {
         breeds,
     }))
 }
-export const CategoriesNormalizer = (data: CategoryType[]) => {
+
+export const CategoriesNormalizer = (data: CategoryType[]): CategoryType[] => {
     return data.map(({id, name}) => ({
         id,
         name

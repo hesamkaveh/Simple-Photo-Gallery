@@ -2,9 +2,21 @@ import {styles} from "./PhotosSection.style";
 import Button from "../../../../components/Button";
 import translate from "../../../../utils/lang";
 import Photo from "../../../../components/Photo";
-import {PhotoType} from "../../../../models/types/gallery.type";
+import {PhotoType} from "../../../../models/models.types";
+import React from "react";
 
-const PhotosSection = ({photosList, fetchNextPage, loadingNewPhotos, ...props}: any) => {
+type PhotosSectionType = {
+    photosList: PhotoType[]
+    fetchNextPage: React.MouseEventHandler<HTMLButtonElement> | undefined
+    isLoadingNewPhotos: boolean
+} & React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+
+const PhotosSection: React.FC<PhotosSectionType> = ({
+                                                        photosList,
+                                                        fetchNextPage,
+                                                        isLoadingNewPhotos,
+                                                        ...props
+                                                    }) => {
     const classes = styles()
 
     return (
@@ -15,7 +27,7 @@ const PhotosSection = ({photosList, fetchNextPage, loadingNewPhotos, ...props}: 
                 ))}
             </div>
             <div className={classes.loadMoreBtnContainer}>
-                <Button isLoading={loadingNewPhotos} onClick={fetchNextPage}>
+                <Button isLoading={isLoadingNewPhotos} onClick={fetchNextPage}>
                     {translate('loadMore')}
                 </Button>
             </div>

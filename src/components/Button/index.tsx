@@ -7,7 +7,7 @@ type ButtonType = {
     isLoading?: boolean
 } & React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 
-const Button = React.memo(({children, isLoading = false, ...props}: ButtonType) => {
+const Button: React.FC<ButtonType> = React.memo(({children, isLoading = false, ...props}) => {
     const classes = styles()
 
     return (

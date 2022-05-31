@@ -4,7 +4,7 @@ import {styles} from "./HomePage.style";
 import translate from "../../utils/lang";
 
 
-function HomePage() {
+const HomePage: React.FC = () => {
     const classes = styles()
     return (
         <SectionContainer>

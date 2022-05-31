@@ -1,5 +1,6 @@
 import {init} from "@rematch/core";
-import {models, RootModel} from "../../models";
+import {models} from "../../models";
+import {RootModel} from "../../models/models.types";
 
 
 describe("[gallery] model", () => {

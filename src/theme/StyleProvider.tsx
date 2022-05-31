@@ -16,7 +16,7 @@ type StyleProviderType = {
     children: React.ReactNode
 }
 
-const StyleProvider = ({children}: StyleProviderType) => {
+const StyleProvider: React.FC<StyleProviderType> = ({children}) => {
     useGlobalStyles()
 
     const lang = useSelector((state: RootState) => state.lang.lang)

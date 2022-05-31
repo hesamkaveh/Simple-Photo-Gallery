@@ -5,8 +5,9 @@ type SectionContainerType = {
     children: React.ReactNode
 }
 
-const SectionContainer = ({children}: SectionContainerType) => {
+const SectionContainer: React.FC<SectionContainerType> = ({children}) => {
     const classes = styles()
+
     return (<div className={classes.container}>{children}</div>)
 }
 export default SectionContainer

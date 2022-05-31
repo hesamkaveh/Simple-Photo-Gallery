@@ -4,15 +4,15 @@ import {styles} from "./Modal.style";
 
 type ModalType = {
     children: React.ReactNode,
-    onClose: any,
+    onClose: React.MouseEventHandler<HTMLDivElement | HTMLButtonElement>,
     open: boolean
 }
 
-export const Modal = ({
-                          children,
-                          onClose,
-                          open,
-                      }: ModalType) => {
+export const Modal: React.FC<ModalType> = ({
+                                               children,
+                                               onClose,
+                                               open,
+                                           }) => {
     const classes = styles()
 
     return open ?

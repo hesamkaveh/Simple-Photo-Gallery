@@ -5,12 +5,13 @@ import NavbarMenu from "../../components/NavbarMenu";
 import LanguageSelector from "../../components/LanguageSelector";
 import Logo from "../../components/Logo";
 import TextLogo from "../../components/TextLogo";
+import React from "react";
 
 type defaultLayoutType = {
     children: JSX.Element
 }
 
-export const DefaultLayout = ({children}: defaultLayoutType) => {
+export const DefaultLayout: React.FC<defaultLayoutType> = ({children}) => {
     const classes = styles()
 
     return (

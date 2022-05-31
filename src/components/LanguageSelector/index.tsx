@@ -4,8 +4,9 @@ import {Dispatch, RootState} from "../../store";
 import {useSelector} from "react-redux";
 import {styles} from "./LanguageSelector.style";
 import useRematchDispatch from "../../hooks/useRematchDispatch";
+import React from "react";
 
-const LanguageSelector = () => {
+const LanguageSelector: React.FC = () => {
     const classes = styles()
 
     const currentLang = useSelector((state: RootState) => state.lang.lang)

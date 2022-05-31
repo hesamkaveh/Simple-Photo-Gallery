@@ -1,8 +1,7 @@
 import {createModel} from '@rematch/core'
-import type {RootModel} from './index'
 import axiosInstance from "../services/requestHandler";
-import {CategoryType, GalleryState, PhotoType} from "./types/gallery.type";
 import {CategoriesNormalizer, PhotosNormalizer} from "./normalizer";
+import {CategoryType, GalleryState, PhotoType, RootModel} from "./models.types";
 
 
 const INITIAL_GALLERY_STATES = {
@@ -17,26 +16,28 @@ export const gallery = createModel<RootModel>()({
     state: INITIAL_GALLERY_STATES,
 
     effects: (dispatch) => ({
-        async fetchCategories() {
+        async fetchCategories(): Promise<CategoryType[]> {
             const res = await axiosInstance.get('/categories', {params: {}})
             const normalizedData = CategoriesNormalizer(res.data)
             this.setCategories(normalizedData)
             this.setCurrentCategoryId(normalizedData[0].id)
             return (normalizedData)
         },
-        async fetchPhotos({page, limit = 10, order = 'DEC', category_ids}, rootState) {
+        async fetchPhotos({page, limit = 10, order = 'DEC', category_ids}, rootState): Promise<PhotoType[]> {
             page = page || rootState.gallery.page
             category_ids = category_ids || rootState.gallery.currentCategoryId
             const res = await axiosInstance.get('/images/search', {params: {page, limit, category_ids}})
             const normalizedData = PhotosNormalizer(res.data)
             this.appendPhotos(normalizedData)
             this.changePage(page + 1)
+            return normalizedData
         },
-        async changeCategory(id) {
+        async changeCategory(id: number | string): Promise<number | string> {
             await this.setCurrentCategoryId(id)
             await this.changePage(0)
             await this.resetPhotos()
             await this.fetchPhotos({})
+            return (id)
         },
     }),
 

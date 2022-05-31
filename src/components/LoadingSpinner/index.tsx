@@ -5,7 +5,7 @@ type LoadingSpinnerType = {
     size?: string
 }
 
-const LoadingSpinner = React.memo(({size}: LoadingSpinnerType) => {
+const LoadingSpinner: React.FC<LoadingSpinnerType> = React.memo(({size}) => {
     const classes = styles()
 
     return (

@@ -1,9 +1,11 @@
 import {styles} from "./Photo.style";
 import React, {useState} from "react";
 import {Modal} from "../Modal";
+import {PhotoType} from "../../models/models.types";
 
+type ComponentPhotoType = Pick<PhotoType, "url" | "id">
 
-const Photo = ({url, id}: any) => {
+const Photo: React.FC<ComponentPhotoType> = ({url, id}) => {
     const [open, setOpen] = useState(false)
     const classes = styles()
     id = `${id}`

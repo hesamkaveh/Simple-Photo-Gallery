@@ -2,8 +2,9 @@ import {routeObject} from "../../routes";
 import {Link} from "react-router-dom";
 import {styles} from "./NavbarMenu.style";
 import {useLocation} from 'react-router-dom';
+import React from "react";
 
-const NavbarMenu = () => {
+const NavbarMenu: React.FC = () => {
     const location = useLocation();
     const classes = styles()
 

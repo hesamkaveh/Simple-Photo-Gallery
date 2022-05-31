@@ -1,8 +1,7 @@
 import {createModel} from '@rematch/core'
-import type {RootModel} from './index'
 import {isLanguageSupported} from "../utils/helper";
 import {DEFAULT_LANG} from "../constants/defaults";
-import {LangType} from "./types/lang.type";
+import {LangType, RootModel} from "./models.types";
 
 const INITIAL_LANG_STATES = {
     lang: DEFAULT_LANG,
@@ -19,10 +18,8 @@ export const lang = createModel<RootModel>()({
         },
     }),
     reducers: {
-        setLangReducer(state, payload: string) {
-            return {
-                lang: payload,
-            }
-        },
+        setLangReducer: (state, payload: string) => ({
+            lang: payload,
+        }),
     },
 })
