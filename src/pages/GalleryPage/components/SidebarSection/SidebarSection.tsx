@@ -48,7 +48,7 @@ const SidebarSection: React.FC<SidebarSectionPropsType> = ({
                     <h3 className={classes.mobileTitle}>{translate('selectCategory')}</h3>
                 </Button>
                 {categories.map(({name, id}: CategoryType) => currentCategoryId === id ?
-                    <h4 className={classes.mobileCategory}>«{name}»</h4> : null)}
+                    <h4 key={id} className={classes.mobileCategory}>«{name}»</h4> : null)}
             </div>
 
             <Modal open={open} onClose={() => setOpen(false)}>

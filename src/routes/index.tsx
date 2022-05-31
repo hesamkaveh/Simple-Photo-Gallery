@@ -7,6 +7,8 @@ import {
 import DefaultLayout from "../layouts/DefaultLayout";
 import translate from "../utils/lang";
 import React, {Suspense, lazy} from "react";
+import ErrorBoundaryFallback from "../components/ErrorBoundaryFallback/ErrorBoundaryFallback";
+import {ErrorBoundary} from "react-error-boundary";
 
 const NotFoundPage = lazy(() => import("../pages/NotFoundPage"));
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
@@ -22,19 +24,20 @@ export const routeObject = {
         name: () => translate('pages.photosList')
     }
 }
-const RouteList:React.FC = () => {
 
+const RouteList: React.FC = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route
-                    element={
-                        <DefaultLayout>
-                            <Suspense fallback={<div></div>}>
+                <Route element={
+                    <DefaultLayout>
+                        <Suspense fallback={<></>}>
+                            <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
                                 <Outlet/>
-                            </Suspense>
-                        </DefaultLayout>
-                    }>
+                            </ErrorBoundary>
+                        </Suspense>
+                    </DefaultLayout>
+                }>
                     <Route path={routeObject.home.path} element={<HomePage/>}/>
                     <Route path={routeObject.gallery.path} element={<GalleryPage/>}/>
                     <Route path="*" element={<NotFoundPage/>}>

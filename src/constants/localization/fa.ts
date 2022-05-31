@@ -16,6 +16,10 @@ export default {
     selectCategory: 'انخاب دسته‌بندی',
     homeContent: "این یک گالری عکس ساده است\n" +
         "که با React, Typescript, redux-rematch و Jss طراحی شده است\n" +
-        "از هیچ لایبرری ui آماده مثل MUI یا AntD استفاده نکردم\n"+
-        ' '
+        "از هیچ لایبرری ui آماده مثل MUI یا AntD استفاده نکردم\n" +
+        ' ',
+    tryAgain: "تلاش مجدد",
+    errors: {
+        somethingWrong: 'خطایی رخ داده است:'
+    }
 }

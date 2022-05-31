@@ -16,6 +16,11 @@ export default {
     selectCategory: 'Select a Category',
     homeContent: 'This is a small and simple as possible website for an applying job.\n' +
         'I used React, Typescript, redux-rematch and jss to create this simple app.\n' +
-        'I didn\'t use any pre-made UI Kit library like MUI or AntD.\n'+
-        ' '
+        'I didn\'t use any pre-made UI Kit library like MUI or AntD.\n' +
+        ' ',
+    tryAgain: "Try again",
+    errors: {
+        somethingWrong: 'Something went wrong:'
+    }
+
 }

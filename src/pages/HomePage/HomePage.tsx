@@ -2,6 +2,8 @@ import React from 'react';
 import SectionContainer from "../../components/SectionContainer";
 import {styles} from "./HomePage.style";
 import translate from "../../utils/lang";
+import {withErrorBoundary} from "react-error-boundary";
+import ErrorBoundaryFallback from "../../components/ErrorBoundaryFallback/ErrorBoundaryFallback";
 
 
 const HomePage: React.FC = () => {
@@ -29,4 +31,6 @@ const HomePage: React.FC = () => {
     );
 }
 
-export default HomePage;
+export default withErrorBoundary(HomePage, {
+    FallbackComponent: ErrorBoundaryFallback
+})

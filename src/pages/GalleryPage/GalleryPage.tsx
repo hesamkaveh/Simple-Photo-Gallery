@@ -1,17 +1,20 @@
 import React, {Suspense, lazy} from "react";
 import {RootState, Dispatch} from "../../store";
-import {useEffect} from "react";
 import {styles} from "./GalleryPage.style";
 import SectionContainer from "../../components/SectionContainer";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import {useSelector} from 'react-redux'
 import useRematchDispatch from "../../hooks/useRematchDispatch";
+import {useErrorHandler, withErrorBoundary} from "react-error-boundary";
+import ErrorBoundaryFallback from "../../components/ErrorBoundaryFallback/ErrorBoundaryFallback";
+import {useEffectOnce} from "../../hooks/useEffectOnce";
 
 const SidebarSection = lazy(() => import( "./components/SidebarSection/SidebarSection"));
 const PhotosSection = lazy(() => import("./components/PhotosSection/PhotosSection"));
 
 const GalleryPage: React.FC = () => {
     const classes = styles()
+    const handleError = useErrorHandler()
 
     const {
         categories,
@@ -36,16 +39,26 @@ const GalleryPage: React.FC = () => {
         changeCategory: dispatch.gallery.changeCategory,
     }))
 
-    useEffect(() => {
-        (photoList?.length || 0) < 1 && fetchCategories().then(() => {
-            fetchPhotos({})
-        })
-        // eslint-disable-next-line
-    }, [fetchCategories, fetchPhotos])
+    useEffectOnce(() => {
+        (photoList?.length || 0) < 1 && fetchCategories()
+            .then(() => handleLoadMorePhotos())
+            .catch((e) => handleError(e))
+    })
 
-    const handleLoadMore = () => {
+    const handleLoadMorePhotos = () => {
         fetchPhotos({})
+            .catch((e) => {
+                handleError(e)
+            })
     }
+
+    const handleChangeCategory = (catId: number | string) => {
+        changeCategory(catId)
+            .then(() => (catId))
+            .catch(e => handleError(e))
+        return ({})
+    }
+
     return (
         <SectionContainer>
             <div className={classes.container}>
@@ -55,7 +68,7 @@ const GalleryPage: React.FC = () => {
                     {categories.length > 0 && <SidebarSection className={classes.sidebar}
                                                               categories={categories}
                                                               currentCategoryId={currentCategoryId}
-                                                              changeCategory={changeCategory}
+                                                              changeCategory={handleChangeCategory}
                     />}
                 </Suspense>
 
@@ -63,9 +76,7 @@ const GalleryPage: React.FC = () => {
                     fallback={<div className={classes.photosLoadingWrapper}><LoadingSpinner/></div>}>
                     {photoList.length > 0 && <PhotosSection className={classes.gallery}
                                                             photosList={photoList}
-                                                            fetchNextPage={() => {
-                                                                handleLoadMore()
-                                                            }}
+                                                            fetchNextPage={handleLoadMorePhotos}
                                                             isLoadingNewPhotos={isLoadingNewPhotos}/>}
                 </Suspense>
                 {photoList.length < 1 && isLoadingNewPhotos ?
@@ -74,4 +85,7 @@ const GalleryPage: React.FC = () => {
         </SectionContainer>
     )
 }
-export default GalleryPage
+
+export default withErrorBoundary(GalleryPage, {
+    FallbackComponent: ErrorBoundaryFallback
+})
